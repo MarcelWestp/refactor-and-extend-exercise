@@ -54,7 +54,7 @@ Below you will find some personas of people who will be interacting with your ap
 * **Mary**
   * **Roles**: Customer, Anonymous
   * **Goals**: Sell the car her ex-husband left her.
-  * **Potholes**: Doesn't want to haggle. Only uses her cell phone to go online. 
+  * **Potholes**: Doesn't want to haggle. Only uses her cell phone to go online.
 
 * **Laura**
   * **Roles**: Owner of the dealership
@@ -70,18 +70,31 @@ Story point, prioritize, then complete these user stories:
 > **NOTE**: If being led by an instructor, use the first four stories to walk through INVEST, Story Pointing, and Prioritizing.
 
 - As Todd I want to see a full inventory of vehicles the company owns so I can see if my car is already listed.
+
 - As Todd I want to see a history of the cars I have submitted to the form so that I don't submit a vehicle a second time.
+
 - As Laura I want to be able to create new model and year acceptance rules through the website so that I can accept more types of vehicles.
+
 - As Laura I want to see the value of each vehicle in my inventory so I can price the vehicles on my lot.
+
 - As Mary I want to see a message that tells me why a car is not valid so that I know why my submission is being rejected.
+
 - As Todd I want to be able to see information about the company I am submitting the car information to so that I know it is a legitimate business.
+
 - As Todd I want to be able to send the business owner a message so that I can ask a follow up question if my car is accepted or rejected.
+
 - As Mary I want to be able to access the website from my phone so I can submit a vehicle while I'm away from home.
+
 - As Mary I want my choices of vehicle makes, models, and years to be automatically populated so that I can easily pick my vehicle.
+
 - As Laura I want to be able to accept specific models of vehicles along with their year and make so that I can accept a wider range of vehicles.
+
 - As Laura I want to be able to know the colors of the vehicles being submitted to the form so that I can make better decisions about my inventory.
+
 - As Laura I want to be able to remove acceptance rules so that I can stop accepting vehicles that are already in my inventory.
+
 - As Laura I want to be able to see a list of email addresses of customers who use the website so that I can send them a newsletter.
+
 - As Laura I want to be able to see a picture of the vehicle submitted by the customer so that I can manually reject a vehicle if it has damage.
 
 #### Specifications (Optional)
@@ -103,4 +116,3 @@ Assume that someone has written the following specifications.  Determine if each
 - [Project Board With Pre-written Stories](https://github.com/gSchool/refactor-and-extend-exercise/projects/1)
 - [NHTSA Vehicle API](https://vpic.nhtsa.dot.gov/api/)
 - [VIN Audit - Market Value API](https://www.vinaudit.com/vehicle-market-value-api)
-  
