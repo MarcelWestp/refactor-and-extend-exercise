@@ -9,6 +9,8 @@ T +2
 ----
   +3
 
+We could implement an full inventory of vehicles the company owns to buy new vehicles
+
 - As Todd I want to see a history of the cars I have submitted to the form so that I don't submit a vehicle a second time.
 
 I -1
@@ -20,6 +22,8 @@ T +2
 ----
   +2
 
+We could implement an inventory of your submitted vehicles.
+
 - As Laura I want to be able to create new model and year acceptance rules through the website so that I can accept more types of vehicles.
 
 I +2
@@ -30,6 +34,8 @@ S  0
 T +2
 ----
   +8
+
+  
 
 - As Laura I want to see the value of each vehicle in my inventory so I can price the vehicles on my lot.
 
