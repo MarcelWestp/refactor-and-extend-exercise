@@ -9,7 +9,7 @@ T +2
 ----
   +3
 
-We could implement an full inventory of vehicles the company owns to buy new vehicles
+BUT ->  We could implement an full inventory of vehicles the company owns to buy new vehicles
 
 - As Todd I want to see a history of the cars I have submitted to the form so that I don't submit a vehicle a second time.
 
@@ -22,7 +22,7 @@ T +2
 ----
   +2
 
-We could implement an inventory of your submitted vehicles.
+BUT -> We could implement an inventory of your submitted vehicles.
 
 - As Laura I want to be able to create new model and year acceptance rules through the website so that I can accept more types of vehicles.
 
@@ -36,7 +36,6 @@ T +2
   +8
 
   
-
 - As Laura I want to see the value of each vehicle in my inventory so I can price the vehicles on my lot.
 
 I -2
@@ -48,7 +47,12 @@ T -1
 ----
   -3
 
+XXX
+First of all we need to talk how we estimate the value of the vehicle. 
+
 - As Mary I want to see a message that tells me why a car is not valid so that I know why my submission is being rejected.
+
+
 
 I -2
 N +2
@@ -70,6 +74,9 @@ T  0
 ----
   +3
 
+But we can show him the about us page. And talk about the 
+clarification of the business information later.
+
 - As Todd I want to be able to send the business owner a message so that I can ask a follow up question if my car is accepted or rejected.
 
 I  0
@@ -80,6 +87,8 @@ S  0
 T +1
 ----
   +4
+
+But we can show him the contact details from the business owner.
 
 - As Mary I want to be able to access the website from my phone so I can submit a vehicle while I'm away from home.
 
@@ -147,6 +156,8 @@ T +2
 ----
   +3
 
+But -> We can allow the customer to sign up to the newsletter page, which will automatically be sent. 
+
 - As Laura I want to be able to see a picture of the vehicle submitted by the customer so that I can manually reject a vehicle if it has damage.
 
 I -1
@@ -157,3 +168,6 @@ S -2
 T +2
 ----
   +2
+
+But -> We can allowed laura to manually reject cars after the vehicle is already submitted.
+
