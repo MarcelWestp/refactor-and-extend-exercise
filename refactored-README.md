@@ -1,5 +1,6 @@
 - As Todd I want to see a full inventory of vehicles the company owns so I can see if my car is already listed.
 
+
 I -2
 N +2
 V -1
@@ -9,14 +10,26 @@ T +2
 ----
   +3
 
-E  2
+BUT ->  We could implement an full inventory of vehicles the company owns to buy new vehicles
+
+
+
+<!-- E  2
 S  +
 U  -
 C  -
 ----
   +4
+ -->
 
-BUT ->  We could implement an full inventory of vehicles the company owns to buy new vehicles
+//Given 
+initial state of the application
+
+//When (action trigger)
+
+
+//Then (newState)
+
 
 - As Todd I want to see a history of the cars I have submitted to the form so that I don't submit a vehicle a second time.
 
@@ -29,12 +42,12 @@ T +2
 ----
   +2
 
-E  2
+<!-- E  2
 S  +
 U  +
 C  -
 ----
-  +8  
+  +8   -->
 
 BUT -> We could implement an inventory of your submitted vehicles.
 
@@ -49,12 +62,15 @@ T +2
 ----
   +8
 
+Prio: 1
+
 E  2
 S  +
 U  +
 C  -
 ----
   +8   
+
 
   
 - As Laura I want to see the value of each vehicle in my inventory so I can price the vehicles on my lot.
@@ -68,12 +84,12 @@ T -1
 ----
   -3
 
-E  2
+<!-- E  2
 S  +
 U  +
 C  +
 ----
-  +16  
+  +16   -->
   
 TODO: Talk to Steve
 First of all we need to talk how we estimate the value of the vehicle. 
@@ -88,6 +104,8 @@ S +1
 T +2
 ----
   +6
+
+Prio 2
 
 E  2
 S  +
@@ -129,12 +147,12 @@ T +1
 ----
   +4
 
-E  2
+<!-- E  2
 S  +
 U  -
 C  -
 ----
-  +4   
+  +4    -->
 
 But we can show him the contact details from the business owner.
 
@@ -148,6 +166,8 @@ S +1
 T  0
 ----
   +5
+
+Prio 3
 
 E  2
 S  -
@@ -167,6 +187,8 @@ T +2
 ----
   +5
 
+Prio 4
+
 E  2
 S  +
 U  +
@@ -184,6 +206,8 @@ S +2
 T +2
 ----
   +8
+
+Prio 3
 
 E  2
 S  +
@@ -203,6 +227,8 @@ T +2
 ----
   +9
 
+Prio 2
+
 E  2
 S  +
 U  -
@@ -221,6 +247,8 @@ T +2
 ----
   +8
 
+Prio 3
+
 E  2
 S  +
 U  -
@@ -238,13 +266,13 @@ S +1
 T +2
 ----
   +3
-
+<!-- 
 E  2
 S  +
 U  -
 C  -
 ----
-  +4  
+  +4   -->
 
 But -> We can allow the customer to sign up to the newsletter page, which will automatically be sent. 
 
@@ -259,12 +287,14 @@ T +2
 ----
   +2
 
-E  2
+
+
+<!-- E  2
 S  +
 U  -
 C  +
 ----
-  +8 
+  +8  -->
 
 But -> We can allowed laura to manually reject cars after the vehicle is already submitted.
 
