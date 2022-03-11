@@ -22,14 +22,6 @@ C  -
   +4
  -->
 
-//Given 
-initial state of the application
-
-//When (action trigger)
-
-
-//Then (newState)
-
 
 - As Todd I want to see a history of the cars I have submitted to the form so that I don't submit a vehicle a second time.
 
@@ -64,13 +56,25 @@ T +2
 
 Prio: 1
 
+<!-- GIVEN (initial state)
+WHEN (action)
+THEN (validate new state) -->
+<!-- Example 
+GIVEN dominoes have been arranged
+WHEN someone pushes the first domino over
+THEN no dominoes should remain standing -->
+
+GIVEN there is an acceptance rule list AND a new acceptance rule is provided;
+WHEN the new acceptance rule is submitted
+THEN the acceptance rule list should contain the new rule.
+
 E  2
 S  +
 U  +
 C  -
 ----
   +8   
-
+  
 
   
 - As Laura I want to see the value of each vehicle in my inventory so I can price the vehicles on my lot.
