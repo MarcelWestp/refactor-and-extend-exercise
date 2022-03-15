@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {render, fireEvent, cleanup} from "@testing-library/react"
 import {Shallow} from 'enzyme'
 
 class App extends Component {
@@ -52,7 +53,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App" >
         {this.state.isValid ? <h2>Valid Vehicle</h2> : <h2>Invalid Vehicle</h2>}
         <label>Make:</label>
         <input type="text" name="make" onChange={(event) => this.setState({ ...this.state, make: event.target.value })} />
