@@ -1,12 +1,10 @@
 package com.purchaseauto.api;
 
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@ComponentScan("com.purchaseauto.api")
 public class AutoController {
 
     AutoValidator autoValidator;
