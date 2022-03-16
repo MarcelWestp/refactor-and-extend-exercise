@@ -30,7 +30,7 @@ class AutoControllerTest {
         when(autoValidator.validateAuto(anyString(), anyInt())).thenReturn(true);
 
         // Act
-        mockMvc.perform(get("/validate/mazda/99"))
+        mockMvc.perform(get("/validate/mazda/1999"))
                 // Assert
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.accepted").value(true))
@@ -43,7 +43,7 @@ class AutoControllerTest {
         when(autoValidator.validateAuto(anyString(), anyInt())).thenReturn(false);
 
         // Act
-        mockMvc.perform(get("/validate/mazda/96"))
+        mockMvc.perform(get("/validate/mazda/1966"))
                 // Assert
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.accepted").value(false))
@@ -70,6 +70,14 @@ class AutoControllerTest {
     void invalidAuto_invalidYear_returnsBadRequest() throws Exception {
         // Act
         mockMvc.perform(get("/validate/mazda/202a"))
+                // Assert
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void invalidAuto_invalidTwoDigitYear_returnsBadRequest() throws Exception {
+        // Act
+        mockMvc.perform(get("/validate/mazda/98"))
                 // Assert
                 .andExpect(status().isBadRequest());
     }

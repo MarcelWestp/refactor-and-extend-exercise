@@ -14,9 +14,12 @@ public class AutoController {
     }
 
     @GetMapping("validate/{make}/{year}")
-    public Automobile validAuto(@PathVariable String make, @PathVariable int year) {
+    public ResponseEntity<Automobile> validAuto(@PathVariable String make, @PathVariable int year) {
+        if (String.valueOf(year).length() < 4)
+            return ResponseEntity.badRequest().build();
+
         boolean isValid = autoValidator.validateAuto(make, year);
-        return new Automobile(make, year, isValid);
+        return ResponseEntity.ok(new Automobile(make, year, isValid));
     }
 
     @GetMapping(value = {"validate/{value}", "validate"})

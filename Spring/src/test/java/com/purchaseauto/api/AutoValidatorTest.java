@@ -60,7 +60,6 @@ class AutoValidatorTest {
     void validateAuto_noValidMake_returnsFalse() throws Exception {
         // Arrage
         Automobile mazda = new Automobile("mazda", 1999);
-
         when(autoRepository.findByMake(anyString())).thenReturn(new AcceptanceRuleList());
         // Act
         boolean result = autoValidator.validateAuto(mazda.getMake(), mazda.getYear());
