@@ -1,17 +1,23 @@
 package com.purchaseauto.api;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+
+@Getter
+@Entity
+@Table(name = "Automobiles")
 public class Automobile {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String make;
     private int year;
+
+    @Setter
     private Boolean accepted;
-
-    public String getMake() {
-        return make;
-    }
-
-    public Boolean getAccepted() {
-        return accepted;
-    }
 
     public Automobile(String make, int year) {
         super();
@@ -24,14 +30,6 @@ public class Automobile {
         this.make = make;
         this.year = year;
         this.accepted = accepted;
-    }
-
-    public void setAccepted(Boolean accepted) {
-        this.accepted = accepted;
-    }
-
-    public int getYear() {
-        return year;
     }
 
 }
