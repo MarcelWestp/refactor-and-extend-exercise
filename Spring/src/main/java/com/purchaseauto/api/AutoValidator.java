@@ -5,8 +5,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class AutoValidator {
 
-    public boolean validateCar(Automobile automobile) {
+    public boolean validateCar(String make, String year) {
         return false;
+    }
 
       /*  String make = "mazda";
         String year = "1999";
@@ -78,6 +79,4 @@ public class AutoValidator {
         }
         }
         */
-
-    }
 }

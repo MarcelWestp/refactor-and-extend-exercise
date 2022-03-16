@@ -17,8 +17,10 @@ public class AutoController {
 
     @GetMapping("validate/{make}/{year}")
     public Automobile validAuto(@PathVariable String make, @PathVariable String year) {
-
-        return null;
+        boolean isValid = autoValidator.validateCar(make, year);
+        Automobile automobile = new Automobile(make, year);
+        automobile.setAccepted(isValid);
+        return automobile;
     }
 
 }
