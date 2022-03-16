@@ -2,18 +2,17 @@ package com.purchaseauto.api;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(AutoController.class)
@@ -31,23 +30,40 @@ class AutoControllerTest {
         when(autoValidator.validateCar(anyString(), anyString())).thenReturn(true);
 
         // Act
-        mockMvc.perform(MockMvcRequestBuilders.get("/validate/mazda/99"))
+        mockMvc.perform(get("/validate/mazda/99"))
                 // Assert
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.accepted").value(true))
-                .andDo(MockMvcResultHandlers.print());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.accepted").value(true))
+                .andDo(print());
+    }
 
-       /* // Arrange
-        List<Automobile> automobiles = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            automobiles.add(new Automobile(1967 + i, "Ford", "Mustang", "AABB" + i));
-        }
-        when(autosService.getAutos()).thenReturn(new AutosList(automobiles));
+    @Test
+    void validateAuto_make_year_returnsNotAcceptedAuto() throws Exception {
+        // Arrage
+        when(autoValidator.validateCar(anyString(), anyString())).thenReturn(false);
 
         // Act
-        mockMvc.perform(get("/api/autos"))
+        mockMvc.perform(get("/validate/mazda/96"))
                 // Assert
-                .andExpect(status().is(200))
-                .andExpect(jsonPath("$.automobiles", hasSize(5)));*/
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.accepted").value(false))
+                .andDo(print());
     }
+
+    @Test
+    void validateAuto_make_returnsBadRequest() throws Exception {
+        // Act
+        mockMvc.perform(get("/validate/mazda"))
+                // Assert
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void validateAuto_noParams_returnsBadRequest() throws Exception {
+        // Act
+        mockMvc.perform(get("/validate"))
+                // Assert
+                .andExpect(status().isBadRequest());
+    }
+
 }

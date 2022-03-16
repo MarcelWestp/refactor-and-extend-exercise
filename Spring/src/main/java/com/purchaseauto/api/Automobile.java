@@ -13,6 +13,19 @@ public class Automobile {
         return accepted;
     }
 
+    public Automobile(String make, String year) {
+        super();
+        this.make = make;
+        this.year = year;
+    }
+
+    public Automobile(String make, String year, Boolean accepted) {
+        super();
+        this.make = make;
+        this.year = year;
+        this.accepted = accepted;
+    }
+
     public void setAccepted(Boolean accepted) {
         this.accepted = accepted;
     }
@@ -21,9 +34,4 @@ public class Automobile {
         return year;
     }
 
-    public Automobile(String make, String year) {
-        super();
-        this.make = make;
-        this.year = year;
-    }
 }
