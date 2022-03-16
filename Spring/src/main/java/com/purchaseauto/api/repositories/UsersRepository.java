@@ -1,2 +1,4 @@
-package com.purchaseauto.api.repositories;public interface UsersRepository {
+package com.purchaseauto.api.repositories;
+
+public interface UsersRepository {
 }

@@ -1,5 +1,6 @@
-package com.purchaseauto.api;
+package com.purchaseauto.api.services;
 
+import com.purchaseauto.api.AcceptanceRuleList;
 import com.purchaseauto.api.repositories.AcceptanceRulesRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

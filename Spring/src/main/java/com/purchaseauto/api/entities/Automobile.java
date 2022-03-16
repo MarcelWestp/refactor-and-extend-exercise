@@ -1,4 +1,4 @@
-package com.purchaseauto.api;
+package com.purchaseauto.api.entities;
 
 import lombok.Getter;
 import lombok.Setter;

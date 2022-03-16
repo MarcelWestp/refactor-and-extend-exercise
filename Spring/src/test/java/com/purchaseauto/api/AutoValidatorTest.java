@@ -1,5 +1,9 @@
 package com.purchaseauto.api;
 
+import com.purchaseauto.api.entities.AcceptanceRule;
+import com.purchaseauto.api.entities.Automobile;
+import com.purchaseauto.api.repositories.AcceptanceRulesRepository;
+import com.purchaseauto.api.services.AutoValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,11 +23,11 @@ class AutoValidatorTest {
     AutoValidator autoValidator;
 
     @Mock
-    AutoRepository autoRepository;
+    AcceptanceRulesRepository acceptanceRulesRepository;
 
     @BeforeEach
     void setUp() {
-        autoValidator = new AutoValidator(autoRepository);
+        autoValidator = new AutoValidator(acceptanceRulesRepository);
     }
 
     @Test
@@ -34,7 +38,7 @@ class AutoValidatorTest {
         list.add(new AcceptanceRule("mazda", 2006, 2022));
         list.add(new AcceptanceRule("mazda", 1970, 1999));
 
-        when(autoRepository.findByMake(anyString())).thenReturn(new AcceptanceRuleList(list));
+        when(acceptanceRulesRepository.findByMake(anyString())).thenReturn(new AcceptanceRuleList(list));
         // Act
         boolean result = autoValidator.validateAuto(mazda.getMake(), mazda.getYear());
         // Assert
@@ -49,7 +53,7 @@ class AutoValidatorTest {
         list.add(new AcceptanceRule("mazda", 2006, 2022));
         list.add(new AcceptanceRule("mazda", 1970, 1998));
 
-        when(autoRepository.findByMake(anyString())).thenReturn(new AcceptanceRuleList(list));
+        when(acceptanceRulesRepository.findByMake(anyString())).thenReturn(new AcceptanceRuleList(list));
         // Act
         boolean result = autoValidator.validateAuto(mazda.getMake(), mazda.getYear());
         // Assert
@@ -60,7 +64,7 @@ class AutoValidatorTest {
     void validateAuto_noValidMake_returnsFalse() throws Exception {
         // Arrage
         Automobile mazda = new Automobile("mazda", 1999);
-        when(autoRepository.findByMake(anyString())).thenReturn(new AcceptanceRuleList());
+        when(acceptanceRulesRepository.findByMake(anyString())).thenReturn(new AcceptanceRuleList());
         // Act
         boolean result = autoValidator.validateAuto(mazda.getMake(), mazda.getYear());
         // Assert

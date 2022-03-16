@@ -1,5 +1,6 @@
 package com.purchaseauto.api;
 
+import com.purchaseauto.api.entities.AcceptanceRule;
 import lombok.*;
 
 import java.util.List;

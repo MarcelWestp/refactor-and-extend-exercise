@@ -1,5 +1,6 @@
 package com.purchaseauto.api;
 
+import com.purchaseauto.api.entities.AcceptanceRule;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
