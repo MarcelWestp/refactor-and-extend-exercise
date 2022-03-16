@@ -3,18 +3,18 @@ package com.purchaseauto.api;
 public class Automobile {
     private String make;
     private String year;
-    private Boolean accpeted;
+    private Boolean accepted;
 
     public String getMake() {
         return make;
     }
 
-    public Boolean getAccpeted() {
-        return accpeted;
+    public Boolean getAccepted() {
+        return accepted;
     }
 
-    public void setAccpeted(Boolean accpeted) {
-        this.accpeted = accpeted;
+    public void setAccepted(Boolean accepted) {
+        this.accepted = accepted;
     }
 
     public String getYear() {
