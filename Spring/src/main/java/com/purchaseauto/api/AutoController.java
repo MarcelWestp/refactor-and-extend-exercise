@@ -5,8 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 @ComponentScan("com.purchaseauto.api")
 public class AutoController {
@@ -18,8 +16,8 @@ public class AutoController {
     }
 
     @GetMapping("validate/{make}/{year}")
-    public Automobile validAuto(@PathVariable String make, @PathVariable String year) {
-        boolean isValid = autoValidator.validateCar(make, year);
+    public Automobile validAuto(@PathVariable String make, @PathVariable int year) {
+        boolean isValid = autoValidator.validateAuto(make, year);
         return new Automobile(make, year, isValid);
     }
 
@@ -28,9 +26,14 @@ public class AutoController {
         return ResponseEntity.badRequest().build();
     }
 
-    @ExceptionHandler
+  /*  @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public void InvalidAutoFormExceptionHandler(InvalidAutoFormException e) {
+    }*/
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public void NumberFormatExceptionHandler(NumberFormatException e) {
     }
 
 }

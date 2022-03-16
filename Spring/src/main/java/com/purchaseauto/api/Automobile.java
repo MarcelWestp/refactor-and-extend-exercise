@@ -2,7 +2,7 @@ package com.purchaseauto.api;
 
 public class Automobile {
     private String make;
-    private String year;
+    private int year;
     private Boolean accepted;
 
     public String getMake() {
@@ -13,13 +13,13 @@ public class Automobile {
         return accepted;
     }
 
-    public Automobile(String make, String year) {
+    public Automobile(String make, int year) {
         super();
         this.make = make;
         this.year = year;
     }
 
-    public Automobile(String make, String year, Boolean accepted) {
+    public Automobile(String make, int year, Boolean accepted) {
         super();
         this.make = make;
         this.year = year;
@@ -30,7 +30,7 @@ public class Automobile {
         this.accepted = accepted;
     }
 
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 

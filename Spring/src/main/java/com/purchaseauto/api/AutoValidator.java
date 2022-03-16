@@ -1,12 +1,18 @@
 package com.purchaseauto.api;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class AutoValidator {
 
-    public boolean validateCar(String make, String year) {
-        return false;
+    private AutoRepository autoRepository;
+
+    public boolean validateAuto(String make, int year) {
+        AcceptanceRuleList ruleList = autoRepository.findByMake(make);
+        return !ruleList.isEmpty() && ruleList.getAcceptanceRuleList().stream().anyMatch(
+                rule -> year >= rule.getFromYear() && year <= rule.getToYear());
     }
 
       /*  String make = "mazda";

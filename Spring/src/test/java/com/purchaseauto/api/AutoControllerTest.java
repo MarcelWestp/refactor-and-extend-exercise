@@ -25,9 +25,9 @@ class AutoControllerTest {
     AutoValidator autoValidator;
 
     @Test
-    void validateAuto_make_year_returnsAcceptedAuto() throws Exception {
+    void validAuto_make_year_returnsAcceptedAuto() throws Exception {
         // Arrage
-        when(autoValidator.validateCar(anyString(), anyString())).thenReturn(true);
+        when(autoValidator.validateAuto(anyString(), anyInt())).thenReturn(true);
 
         // Act
         mockMvc.perform(get("/validate/mazda/99"))
@@ -38,9 +38,9 @@ class AutoControllerTest {
     }
 
     @Test
-    void validateAuto_make_year_returnsNotAcceptedAuto() throws Exception {
+    void validAuto_make_year_returnsNotAcceptedAuto() throws Exception {
         // Arrage
-        when(autoValidator.validateCar(anyString(), anyString())).thenReturn(false);
+        when(autoValidator.validateAuto(anyString(), anyInt())).thenReturn(false);
 
         // Act
         mockMvc.perform(get("/validate/mazda/96"))
@@ -51,7 +51,7 @@ class AutoControllerTest {
     }
 
     @Test
-    void validateAuto_make_returnsBadRequest() throws Exception {
+    void invalidAuto_make_returnsBadRequest() throws Exception {
         // Act
         mockMvc.perform(get("/validate/mazda"))
                 // Assert
@@ -59,9 +59,17 @@ class AutoControllerTest {
     }
 
     @Test
-    void validateAuto_noParams_returnsBadRequest() throws Exception {
+    void invalidAuto_noParams_returnsBadRequest() throws Exception {
         // Act
         mockMvc.perform(get("/validate"))
+                // Assert
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void invalidAuto_invalidYear_returnsBadRequest() throws Exception {
+        // Act
+        mockMvc.perform(get("/validate/mazda/202a"))
                 // Assert
                 .andExpect(status().isBadRequest());
     }
