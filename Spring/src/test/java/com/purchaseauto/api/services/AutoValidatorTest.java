@@ -38,8 +38,8 @@ class AutoValidatorTest {
         Make make = new Make("mazda");
         Automobile mazda = new Automobile(make, 1999);
         List<AcceptanceRule> list = new ArrayList<>();
-        list.add(new AcceptanceRule("mazda", 2006, 2022));
-        list.add(new AcceptanceRule("mazda", 1970, 1999));
+        list.add(new AcceptanceRule(new Make("mazda"), 2006, 2022));
+        list.add(new AcceptanceRule(new Make("mazda"), 1970, 1999));
 
         when(acceptanceRulesRepository.findByMake(any(Make.class))).thenReturn(new AcceptanceRuleList(list));
         // Act
@@ -54,8 +54,8 @@ class AutoValidatorTest {
         Make make = new Make("mazda");
         Automobile mazda = new Automobile(make, 1999);
         List<AcceptanceRule> list = new ArrayList<>();
-        list.add(new AcceptanceRule("mazda", 2006, 2022));
-        list.add(new AcceptanceRule("mazda", 1970, 1998));
+        list.add(new AcceptanceRule(new Make("mazda"), 2006, 2022));
+        list.add(new AcceptanceRule(new Make("mazda"), 1970, 1998));
 
         when(acceptanceRulesRepository.findByMake(any(Make.class))).thenReturn(new AcceptanceRuleList(list));
         // Act

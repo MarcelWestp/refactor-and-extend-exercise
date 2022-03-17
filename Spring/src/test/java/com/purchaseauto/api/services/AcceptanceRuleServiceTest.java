@@ -3,6 +3,7 @@ package com.purchaseauto.api.services;
 import com.purchaseauto.api.AcceptanceRuleList;
 import com.purchaseauto.api.InvalidAcceptanceRuleException;
 import com.purchaseauto.api.entities.AcceptanceRule;
+import com.purchaseauto.api.entities.Make;
 import com.purchaseauto.api.repositories.AcceptanceRulesRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,6 +29,8 @@ class AcceptanceRuleServiceTest {
     @Mock
     AcceptanceRulesRepository acceptanceRulesRepository;
 
+
+
     @BeforeEach
     void setUp() {
         acceptanceRuleService = new AcceptanceRuleService(acceptanceRulesRepository);
@@ -37,9 +40,9 @@ class AcceptanceRuleServiceTest {
     void getAcceptanceRules_noParam_returnsAcceptanceRuleList() throws Exception {
         // Arrange
         List<AcceptanceRule> ruleList = Arrays.asList(
-                new AcceptanceRule("mazda", 1998, 2002),
-                new AcceptanceRule("mazda", 2009, 2021),
-                new AcceptanceRule("toyota", 1998, 2013)
+                new AcceptanceRule(new Make("mazda"), 1998, 2002),
+                new AcceptanceRule(new Make("mazda"), 2009, 2021),
+                new AcceptanceRule(new Make("toyota"), 1998, 2013)
         );
         when(acceptanceRulesRepository.findAll()).thenReturn(ruleList);
         // Act
@@ -62,7 +65,8 @@ class AcceptanceRuleServiceTest {
     @Test
     void addAcceptanceRule_make_fromYear_toYear_returnsAcceptanceRule() throws Exception {
         // Arrange
-        AcceptanceRule rule = new AcceptanceRule("mazda", 1999, 2013);
+        Make make = new Make("mazda");
+        AcceptanceRule rule = new AcceptanceRule(make, 1999, 2013);
         when(acceptanceRulesRepository.save(rule)).thenReturn(rule);
         // Act
         AcceptanceRule result = acceptanceRuleService.addAcceptanceRule(rule);
@@ -72,9 +76,10 @@ class AcceptanceRuleServiceTest {
 
     @ParameterizedTest
     @CsvSource(value = {"mazda,1999,0", "mazda,0,2013", "'',1999,2013", "mazda, 2013, 1997"})
-    void addAcceptanceRule_missingParam_throwsInvalidAcceptanceRuleException(String make, int fromYear, int toYear) throws Exception {
+    void addAcceptanceRule_missingParam_throwsInvalidAcceptanceRuleException(String makeString, int fromYear, int toYear) throws Exception {
         // Arrange
-        make = make.isEmpty() ? null : make;
+        makeString = makeString.isEmpty() ? null : makeString;
+        Make make = new Make(makeString);
         AcceptanceRule acceptanceRule = new AcceptanceRule(make, fromYear, toYear);
         // Act // Assert
         Throwable exception = assertThrows(InvalidAcceptanceRuleException.class, () -> {
@@ -86,7 +91,8 @@ class AcceptanceRuleServiceTest {
     @Test
     void deleteAcceptanceRule_validId_returnsAcceptanceRule() throws Exception {
         // Arrange
-        AcceptanceRule rule = new AcceptanceRule("mazda", 1999, 2013);
+        Make make = new Make("mazda");
+        AcceptanceRule rule = new AcceptanceRule(make, 1999, 2013);
         when(acceptanceRulesRepository.deleteById(anyInt())).thenReturn(rule);
         // Act
         AcceptanceRule result = acceptanceRuleService.deleteAcceptanceRule(1);

@@ -43,6 +43,7 @@ public class AutoController {
 
     @PostMapping("rule")
     public AcceptanceRule addAcceptanceRule(@RequestBody AcceptanceRule acceptanceRule) {
+
         return acceptanceRuleService.addAcceptanceRule(acceptanceRule);
     }
 

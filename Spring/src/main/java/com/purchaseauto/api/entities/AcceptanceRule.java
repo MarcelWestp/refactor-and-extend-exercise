@@ -12,11 +12,17 @@ public class AcceptanceRule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String make;
+    private Make make;
     private int fromYear;
     private int toYear;
 
-    public AcceptanceRule(String make, int fromYear, int toYear) {
+//    public AcceptanceRule(String make, int fromYear, int toYear) {
+//        this.make = make;
+//        this.fromYear = fromYear;
+//        this.toYear = toYear;
+//    }
+
+    public AcceptanceRule(Make make, int fromYear, int toYear) {
         this.make = make;
         this.fromYear = fromYear;
         this.toYear = toYear;

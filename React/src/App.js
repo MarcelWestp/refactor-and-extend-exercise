@@ -45,13 +45,9 @@ export const isValidCar = (car) => {
   }
 };
 
-
-
 const App = () => {
   const [state, setState] = useState({ make: '', year: '', isValid: undefined })
-  // state = { make: '', year: '', isValid: undefined }
-
-  
+  // state = { make: '', year: '', isValid: undefined }  
 
     return (
       <div className="App" >

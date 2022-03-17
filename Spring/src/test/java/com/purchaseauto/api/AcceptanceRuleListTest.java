@@ -1,6 +1,7 @@
 package com.purchaseauto.api;
 
 import com.purchaseauto.api.entities.AcceptanceRule;
+import com.purchaseauto.api.entities.Make;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -34,7 +35,8 @@ class AcceptanceRuleListTest {
     void isEmpty_notEmpty_returnsTrue() {
         // Arrange
         List<AcceptanceRule> list = new ArrayList<>();
-        list.add(new AcceptanceRule("mazda", 2006, 2022));
+        Make make = new Make("mazda");
+        list.add(new AcceptanceRule(make, 2006, 2022));
 
         AcceptanceRuleList ruleList = new AcceptanceRuleList(list);
         // Act

@@ -1,10 +1,13 @@
 package com.purchaseauto.api.entities;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "Makes")
+@Getter
 public class Make {
 
     @Id
