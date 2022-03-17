@@ -13,7 +13,7 @@ public class AutoValidator {
 
     public boolean validateAuto(String make, int year) {
         AcceptanceRuleList ruleList = acceptanceRulesRepository.findByMake(make);
-        return !ruleList.isEmpty() && ruleList.getAcceptanceRuleList().stream().anyMatch(
+        return !ruleList.isEmpty() && ruleList.getAcceptanceRules().stream().anyMatch(
                 rule -> year >= rule.getFromYear() && year <= rule.getToYear());
     }
 

@@ -30,15 +30,20 @@ public class AutoController {
         return ResponseEntity.badRequest().build();
     }
 
-    @PostMapping("rule")
-    public AcceptanceRule addAcceptanceRule(@RequestBody AcceptanceRule acceptanceRule) {
-      return acceptanceRuleService.addAcceptanceRule(acceptanceRule);
+    @GetMapping("rules")
+    public AcceptanceRuleList getAcceptanceRules() {
+        return acceptanceRuleService.getAcceptanceRules();
     }
 
-  /*  @ExceptionHandler
+    @PostMapping("rule")
+    public AcceptanceRule addAcceptanceRule(@RequestBody AcceptanceRule acceptanceRule) {
+        return acceptanceRuleService.addAcceptanceRule(acceptanceRule);
+    }
+
+    @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public void InvalidAutoFormExceptionHandler(InvalidAutoFormException e) {
-    }*/
+    public void InvalidAcceptanceRuleExceptionHandler(InvalidAcceptanceRuleException e) {
+    }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)

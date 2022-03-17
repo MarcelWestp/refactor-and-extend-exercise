@@ -22,4 +22,13 @@ public class AcceptanceRule {
         this.toYear = toYear;
     }
 
+    @Override
+    public String toString() {
+        return "AcceptanceRule{" +
+                "id=" + id +
+                ", make='" + make + '\'' +
+                ", fromYear=" + fromYear +
+                ", toYear=" + toYear +
+                '}';
+    }
 }

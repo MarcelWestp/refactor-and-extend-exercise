@@ -1,5 +1,6 @@
 package com.purchaseauto.api;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.purchaseauto.api.entities.AcceptanceRule;
 import lombok.*;
 
@@ -10,9 +11,12 @@ import java.util.List;
 @AllArgsConstructor
 public class AcceptanceRuleList {
 
-    private List<AcceptanceRule> acceptanceRuleList;
+    private List<AcceptanceRule> acceptanceRules;
 
+    @JsonIgnore
     public boolean isEmpty() {
-        return this.acceptanceRuleList == null || this.acceptanceRuleList.isEmpty();
+        return this.acceptanceRules == null || this.acceptanceRules.isEmpty();
     }
+
+
 }

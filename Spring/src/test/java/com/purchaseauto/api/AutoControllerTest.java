@@ -13,6 +13,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Arrays;
+
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -93,6 +95,36 @@ class AutoControllerTest {
     }
 
     @Test
+    void getAcceptanceRules_noParam_returnsAcceptanceRuleList() throws Exception {
+        // Arrage
+        AcceptanceRuleList ruleList = new AcceptanceRuleList(
+                Arrays.asList(
+                        new AcceptanceRule("mazda", 1998, 2002),
+                        new AcceptanceRule("mazda", 2009, 2021),
+                        new AcceptanceRule("toyota", 1998, 2013)
+                ));
+        when(acceptanceRuleService.getAcceptanceRules()).thenReturn(ruleList);
+        // Act
+        mockMvc.perform(get("/rules"))
+                // Assert
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.acceptanceRules").isArray())
+                .andDo(print());
+    }
+
+    @Test
+    void getAcceptanceRules_noParam_returnsEmptyList() throws Exception {
+        // Arrage
+        when(acceptanceRuleService.getAcceptanceRules()).thenReturn(new AcceptanceRuleList());
+        // Act
+        mockMvc.perform(get("/rules"))
+                // Assert
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.acceptanceRules").isEmpty())
+                .andDo(print());
+    }
+
+    @Test
     void addAcceptanceRule_make_fromYear_toYear_returnsAcceptanceRule() throws Exception {
         // Arrage
         AcceptanceRule acceptanceRule = new AcceptanceRule("mazda", 1998, 2013);
@@ -111,37 +143,17 @@ class AutoControllerTest {
 
     @Test
     void addAcceptanceRule_make_fromYear_returnsBadRequest() throws Exception {
-/*        // Arrage
-        AcceptanceRule acceptanceRule = new AcceptanceRule("mazda", 1998, 2013);
-        when(acceptanceRuleService.addAcceptanceRule(any(AcceptanceRule.class))).thenReturn(acceptanceRule);
-
-        String json = mapper.writeValueAsString(acceptanceRule);
-        // Act
-        mockMvc.perform(post("/rule")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(json))
-                // Assert
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("make").value(acceptanceRule.getMake()))
-                .andDo(print());*/
-    }
-
-    @Test
-    void addAcceptanceRule_make_fromYear_toYear_returnsConflict() throws Exception {
         // Arrage
-    /*    AcceptanceRule acceptanceRule = new AcceptanceRule("mazda", 1998, 2013);
-        when(acceptanceRuleService.addAcceptanceRule(any(AcceptanceRule.class))).thenReturn(acceptanceRule);
+        String json = "{\"make\": \"mazda\", \"fromYear\": 1999}";
+        when(acceptanceRuleService.addAcceptanceRule(any(AcceptanceRule.class))).thenThrow(InvalidAcceptanceRuleException.class);
 
-        String json = mapper.writeValueAsString(acceptanceRule);
         // Act
         mockMvc.perform(post("/rule")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 // Assert
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("make").value(acceptanceRule.getMake()))
-                .andDo(print());*/
+                .andExpect(status().isBadRequest())
+                .andDo(print());
     }
-
 
 }
