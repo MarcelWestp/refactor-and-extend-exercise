@@ -24,7 +24,7 @@ public class AcceptanceRule {
 
     @Override
     public String toString() {
-        return "AcceptanceRule{" +
+        return "acceptanceRule{" +
                 "id=" + id +
                 ", make='" + make + '\'' +
                 ", fromYear=" + fromYear +

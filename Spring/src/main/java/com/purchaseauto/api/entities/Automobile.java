@@ -13,19 +13,22 @@ public class Automobile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String make;
-    private int year;
+    @ManyToOne
+    @JoinColumn(name="make_id", insertable = false, updatable = false)
+    @Column(nullable = false)
+    private final Make make;
+    private final int year;
 
     @Setter
     private Boolean accepted;
 
-    public Automobile(String make, int year) {
+    public Automobile(Make make, int year) {
         super();
         this.make = make;
         this.year = year;
     }
 
-    public Automobile(String make, int year, Boolean accepted) {
+    public Automobile(Make make, int year, boolean accepted) {
         super();
         this.make = make;
         this.year = year;

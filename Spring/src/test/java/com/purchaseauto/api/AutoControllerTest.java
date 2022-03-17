@@ -2,8 +2,10 @@ package com.purchaseauto.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.purchaseauto.api.entities.AcceptanceRule;
+import com.purchaseauto.api.entities.Make;
 import com.purchaseauto.api.services.AcceptanceRuleService;
 import com.purchaseauto.api.services.AutoValidator;
+import com.purchaseauto.api.services.MakeService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,13 +36,16 @@ class AutoControllerTest {
     @MockBean
     AcceptanceRuleService acceptanceRuleService;
 
+    @MockBean
+    MakeService makeService;
+
     ObjectMapper mapper = new ObjectMapper();
 
     @Test
     void validAuto_make_year_returnsAcceptedAuto() throws Exception {
         // Arrage
-        when(autoValidator.validateAuto(anyString(), anyInt())).thenReturn(true);
-
+        when(makeService.getMakeFromString(anyString())).thenReturn(new Make("mazda"));
+        when(autoValidator.validateAuto(any(Make.class), anyInt())).thenReturn(true);
         // Act
         mockMvc.perform(get("/validate/mazda/1999"))
                 // Assert
@@ -52,7 +57,8 @@ class AutoControllerTest {
     @Test
     void validAuto_make_year_returnsNotAcceptedAuto() throws Exception {
         // Arrage
-        when(autoValidator.validateAuto(anyString(), anyInt())).thenReturn(false);
+        when(makeService.getMakeFromString(anyString())).thenReturn(new Make("mazda"));
+        when(autoValidator.validateAuto(any(Make.class), anyInt())).thenReturn(false);
 
         // Act
         mockMvc.perform(get("/validate/mazda/1966"))
@@ -154,6 +160,41 @@ class AutoControllerTest {
                 // Assert
                 .andExpect(status().isBadRequest())
                 .andDo(print());
+    }
+
+    @Test
+    void deleteAcceptanceRule_validId_returnsAcceptanceRule() throws Exception {
+        // Arrage
+        AcceptanceRule acceptanceRule = new AcceptanceRule("mazda", 1999, 2013);
+        when(acceptanceRuleService.deleteAcceptanceRule(anyInt())).thenReturn(acceptanceRule);
+        String json = mapper.writeValueAsString(acceptanceRule);
+
+        // Act
+        mockMvc.perform(delete("/rule/1"))
+                // Assert
+                .andExpect(status().isOk())
+                .andExpect(content().json(json))
+                .andDo(print());
+    }
+
+    @Test
+    void deleteAcceptanceRule_invalidId_returnsNotFound() throws Exception {
+        // Arrage
+        when(acceptanceRuleService.deleteAcceptanceRule(anyInt())).thenReturn(null);
+
+        // Act
+        mockMvc.perform(delete("/rule/22"))
+                // Assert
+                .andExpect(status().isNotFound())
+                .andDo(print());
+    }
+
+    @Test
+    void deleteAcceptanceRule_invalidUrl_returnsBadRequest() throws Exception {
+        // Act
+        mockMvc.perform(delete("/rule/aa"))
+                // Assert
+                .andExpect(status().isBadRequest());
     }
 
 }

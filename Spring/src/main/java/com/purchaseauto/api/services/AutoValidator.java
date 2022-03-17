@@ -1,6 +1,7 @@
 package com.purchaseauto.api.services;
 
 import com.purchaseauto.api.AcceptanceRuleList;
+import com.purchaseauto.api.entities.Make;
 import com.purchaseauto.api.repositories.AcceptanceRulesRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,8 @@ public class AutoValidator {
 
     private AcceptanceRulesRepository acceptanceRulesRepository;
 
-    public boolean validateAuto(String make, int year) {
+    public boolean validateAuto(Make make, int year) {
+        if (make == null) return false;
         AcceptanceRuleList ruleList = acceptanceRulesRepository.findByMake(make);
         return !ruleList.isEmpty() && ruleList.getAcceptanceRules().stream().anyMatch(
                 rule -> year >= rule.getFromYear() && year <= rule.getToYear());

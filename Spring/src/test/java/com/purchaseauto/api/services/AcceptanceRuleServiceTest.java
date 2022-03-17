@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -76,10 +77,31 @@ class AcceptanceRuleServiceTest {
         make = make.isEmpty() ? null : make;
         AcceptanceRule acceptanceRule = new AcceptanceRule(make, fromYear, toYear);
         // Act // Assert
-        Throwable exception = assertThrows(InvalidAcceptanceRuleException.class,()->{
+        Throwable exception = assertThrows(InvalidAcceptanceRuleException.class, () -> {
             acceptanceRuleService.addAcceptanceRule(acceptanceRule);
-        },"Exception was expected");
+        }, "Exception was expected");
         assertEquals("invalid acceptance rule", exception.getMessage());
+    }
+
+    @Test
+    void deleteAcceptanceRule_validId_returnsAcceptanceRule() throws Exception {
+        // Arrange
+        AcceptanceRule rule = new AcceptanceRule("mazda", 1999, 2013);
+        when(acceptanceRulesRepository.deleteById(anyInt())).thenReturn(rule);
+        // Act
+        AcceptanceRule result = acceptanceRuleService.deleteAcceptanceRule(1);
+        // Assert
+        assertEquals(rule, result);
+    }
+
+    @Test
+    void deleteAcceptanceRule_invalidId_returnsNull() throws Exception {
+        // Arrange
+        when(acceptanceRulesRepository.deleteById(anyInt())).thenReturn(null);
+        // Act
+        AcceptanceRule result = acceptanceRuleService.deleteAcceptanceRule(1);
+        // Assert
+        assertNull(result);
     }
 
 }

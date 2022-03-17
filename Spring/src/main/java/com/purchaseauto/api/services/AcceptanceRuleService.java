@@ -18,10 +18,14 @@ public class AcceptanceRuleService {
     }
 
     public AcceptanceRule addAcceptanceRule(AcceptanceRule acceptanceRule) {
-        if (isInvalidAcceptanceRule(acceptanceRule))  {
+        if (isInvalidAcceptanceRule(acceptanceRule)) {
             throw new InvalidAcceptanceRuleException("invalid acceptance rule");
         }
         return acceptanceRulesRepository.save(acceptanceRule);
+    }
+
+    public AcceptanceRule deleteAcceptanceRule(int id) {
+       return acceptanceRulesRepository.deleteById(id);
     }
 
     private boolean isInvalidAcceptanceRule(AcceptanceRule acceptanceRule) {
