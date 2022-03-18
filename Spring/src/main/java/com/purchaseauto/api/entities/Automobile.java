@@ -15,9 +15,8 @@ public class Automobile {
     private int id;
     @ManyToOne
     @JoinColumn(name="make_id", insertable = false, updatable = false)
-    @Column(nullable = false)
-    private final Make make;
-    private final int year;
+    private Make make;
+    private int year;
 
     @Setter
     private Boolean accepted;
@@ -35,4 +34,7 @@ public class Automobile {
         this.accepted = accepted;
     }
 
+    public Automobile() {
+
+    }
 }

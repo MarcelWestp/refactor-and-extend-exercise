@@ -29,7 +29,7 @@ public class AcceptanceRuleService {
     }
 
     private boolean isInvalidAcceptanceRule(AcceptanceRule acceptanceRule) {
-        return acceptanceRule.getMake() == null || acceptanceRule.getFromYear() == 0 || acceptanceRule.getToYear() == 0
+        return acceptanceRule.getMake().getName().length()==0 || acceptanceRule.getFromYear() == 0 || acceptanceRule.getToYear() == 0
                 || acceptanceRule.getToYear() < acceptanceRule.getFromYear();
     }
 

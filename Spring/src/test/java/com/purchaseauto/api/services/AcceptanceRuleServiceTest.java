@@ -78,8 +78,8 @@ class AcceptanceRuleServiceTest {
     @CsvSource(value = {"mazda,1999,0", "mazda,0,2013", "'',1999,2013", "mazda, 2013, 1997"})
     void addAcceptanceRule_missingParam_throwsInvalidAcceptanceRuleException(String makeString, int fromYear, int toYear) throws Exception {
         // Arrange
-        makeString = makeString.isEmpty() ? null : makeString;
-        Make make = new Make(makeString);
+//        makeString = makeString.isEmpty() ? "" : makeString;
+       Make make = new Make(makeString);
         AcceptanceRule acceptanceRule = new AcceptanceRule(make, fromYear, toYear);
         // Act // Assert
         Throwable exception = assertThrows(InvalidAcceptanceRuleException.class, () -> {

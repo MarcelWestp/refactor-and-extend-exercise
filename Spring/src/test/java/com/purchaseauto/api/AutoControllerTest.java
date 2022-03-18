@@ -132,20 +132,37 @@ class AutoControllerTest {
 
     @Test
     void addAcceptanceRule_make_fromYear_toYear_returnsAcceptanceRule() throws Exception {
-        // Arrage
-        AcceptanceRule acceptanceRule = new AcceptanceRule(new Make("mazda"), 1998, 2013);
-        when(acceptanceRuleService.addAcceptanceRule(any(AcceptanceRule.class))).thenReturn(acceptanceRule);
+//        // Arrage
+//        AcceptanceRule acceptanceRule = new AcceptanceRule(new Make("mazda2"), 1998, 2013);
+//        //when(acceptanceRuleService.addAcceptanceRule(any(AcceptanceRule.class))).thenReturn(acceptanceRule);
+//
+//        String json = mapper.writeValueAsString(acceptanceRule);
+//        System.out.println(json);
+//        json = "{\"id\":0,\"make\":name,\"fromYear\":1998,\"toYear\":2013}";
+//        // Act
+//        mockMvc.perform(post("/rule")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content(json))
+//                // Assert
+//                //
+//                .andExpect(status().isOk())
+//               .andExpect(jsonPath("$.make.name").isNotEmpty())
+//                        .andDo(print());
 
-        String json = mapper.writeValueAsString(acceptanceRule);
-        System.out.println(json);
-        // Act
+        //Given
+        AcceptanceRule acceptanceRule =  new AcceptanceRule(new Make("mazda2"), 1998, 2013);
+        when(acceptanceRuleService.addAcceptanceRule(any(AcceptanceRule.class))).thenReturn(acceptanceRule);
+        String objectAsJsonsString = mapper.writeValueAsString(acceptanceRule);
+
+        //When
         mockMvc.perform(post("/rule")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(json))
-                // Assert
+                        .content(objectAsJsonsString))
+                .andDo(print())
+
+                //Then
                 .andExpect(status().isOk())
-             //   .andExpect(jsonPath("$.id").value(0))
-                        .andDo(print());
+                .andExpect(jsonPath("$.make.name").isNotEmpty());
     }
 
     @Test

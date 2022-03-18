@@ -17,9 +17,13 @@ public class Make {
     @JoinColumn(name = "make_id")
     private Set<Automobile> automobiles;*/
     @Column(unique = true)
-    private final String name;
+    private String name;
 
     public Make(String name) {
         this.name = name;
+    }
+
+    public Make() {
+
     }
 }
